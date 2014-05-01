@@ -1,18 +1,18 @@
 var restify = require('restify'),
 
-server = restify.createServer({
-    name: 'ClientErrorMonitoringDashboard',
-    version: '0.0.1'
-});
+    server = restify.createServer({
+        name: 'ClientErrorMonitoringDashboard',
+        version: '0.0.1'
+    });
 
 // embedded db
-var nStore = require('nstore');
+var Datastore = require('nedb'),
+    db = new Datastore({
+        filename: 'data/errors.db',
+        autoload: true
+    });
 
-// init storage file
-errors = nStore.new('data/errors.db', function(err) {
-    if (err) throw err;
-    console.log('data/errors.db initialized')
-});
+
 
 // middlewares
 server.use(restify.acceptParser(server.acceptable));
@@ -29,14 +29,22 @@ restify.CORS.ALLOW_HEADERS.push('withcredentials');
 restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 server.use(restify.CORS());
 
-server.post('/apperror', function(req,res,next){
-	console.log(req.body);
-	res.send('Error submitted')
-	errors.save(null, req.body, function(err, key){ // null => autokey
-		if(err) throw err;
-		console.log('Error record saved', key)
-	}) 
+server.post('/apperror', function(req, res, next) {
+    // console.log(req.body);
+    var server = req.body.raw.server
+    console.log(typeof server)
+    res.send('Error submitted')
+    db.insert(req.body, function(err, key) { // null => autokey
+        if (err) throw err;
+        console.log('Error record saved', key)
+    })
+});
 
+server.get('/geterrors', function(req, res, next) {
+    // var number = req.params.number;
+    db.find({}, function(err, errors){
+    	res.send(errors);
+    });
 });
 
 // ROUTE FOR STATIC SERVER

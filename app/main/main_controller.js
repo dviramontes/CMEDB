@@ -11,7 +11,7 @@ angular.module('clienterrordashboard', ['ngRoute'])
     .service('API', function($http) {
         return {
             getErrors: function(num) {
-                return $http.get("/geterrors/" + num).then(function(response) {
+                return $http.get("http://0.0.0.0:3000/geterrors").then(function(response) {
                     if (response.data.error) {
                         return null;
                     } else {
@@ -32,5 +32,5 @@ angular.module('clienterrordashboard', ['ngRoute'])
             'AngularJS',
             'Karma'
         ];
-        
+
     });
