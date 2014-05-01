@@ -61,7 +61,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
+            <div class="col-sm-2 col-md-1 sidebar">
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="#">Overview</a>
                     </li>
@@ -74,7 +74,7 @@
                 </ul>
 
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
                 <h1 class="page-header">Client Error Dashboard</h1>
 
                 <div class="row placeholders">
@@ -101,28 +101,25 @@
                 </div>
 
                 <h2 class="sub-header">Recent</h2>
-                <div class="container">
-                    {{awesomeThings}}
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="table-responsive" >
+                    <table class="table table-striped" >
                         <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Server</th>
-                                <th>App</th>
-                                <th>Username</th>
-                                <th>Address</th>
+                                <th>MSG</th>
+                                <th>LOC</th>
+                                <th>user-agent</th>
                                 <th>Browser</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>Lorem</td>
-                                <td>ipsum</td>
-                                <td>dolor</td>
-                                <td>sit</td>
+                        <tbody >
+                            <tr ng-repeat="d in data">
+                                <td>{{d.date}}</td>
+                                <td>{{d.data.server}}</td>
+                                <td class="" style="color:red">{{d.data.message}}</td>
+                                <td>{{d.data.location}}</td>
+                                <td>{{d.userAgent}}</td>
                             </tr>
                         </tbody>
                     </table>

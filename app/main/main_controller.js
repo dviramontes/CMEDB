@@ -24,6 +24,7 @@ angular.module('clienterrordashboard', ['ngRoute'])
     .controller('MainCtrl', function($scope, $http, API) {
 
         API.getErrors(5).then(function(data) {
+            console.log(data)
             $scope.data = data;
         });
 

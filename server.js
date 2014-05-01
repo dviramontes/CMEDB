@@ -30,11 +30,12 @@ restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 server.use(restify.CORS());
 
 server.post('/apperror', function(req, res, next) {
-    // console.log(req.body);
-    var server = req.body.raw.server
-    console.log(typeof server)
+    console.log(req.headers['user-agent']);
     res.send('Error submitted')
-    db.insert(req.body, function(err, key) { // null => autokey
+    var payload = req.body;
+    payload.date = new Date();
+    payload.userAgent= req.headers['user-agent'];
+    db.insert(payload, function(err, key) { // null => autokey
         if (err) throw err;
         console.log('Error record saved', key)
     })
@@ -43,12 +44,13 @@ server.post('/apperror', function(req, res, next) {
 server.get('/geterrors', function(req, res, next) {
     // var number = req.params.number;
     db.find({}, function(err, errors){
-    	res.send(errors);
+    	res.json(errors);
     });
 });
 
 // ROUTE FOR STATIC SERVER
 // * 
+
 // server.get(/.*/, restify.serveStatic({
 //     'directory': './public',
 //     'default': 'index.html'
