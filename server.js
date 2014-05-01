@@ -1,5 +1,5 @@
 var restify = require('restify'),
-
+    moment = require('moment'),
     server = restify.createServer({
         name: 'ClientErrorMonitoringDashboard',
         version: '0.0.1'
@@ -30,11 +30,10 @@ restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 server.use(restify.CORS());
 
 server.post('/apperror', function(req, res, next) {
-    console.log(req.headers['user-agent']);
     res.send('Error submitted')
     var payload = req.body;
-    payload.date = new Date();
-    payload.userAgent= req.headers['user-agent'];
+    payload.date = moment().format('MMMM Do YYYY, h:mm:ss a')
+    payload.userAgent = req.headers['user-agent'];
     db.insert(payload, function(err, key) { // null => autokey
         if (err) throw err;
         console.log('Error record saved', key)
@@ -43,19 +42,18 @@ server.post('/apperror', function(req, res, next) {
 
 server.get('/geterrors', function(req, res, next) {
     // var number = req.params.number;
-    db.find({}, function(err, errors){
-    	res.json(errors);
+    db.find({}, function(err, errors) {
+        res.json(errors);
     });
 });
-
-// ROUTE FOR STATIC SERVER
-// * 
-
-// server.get(/.*/, restify.serveStatic({
-//     'directory': './public',
-//     'default': 'index.html'
-// }));
 
 server.listen(process.env.PORT || 3000, function() {
     console.log('%s listening at %s', server.name, server.url);
 });
+
+// ROUTE FOR STATIC SERVER
+// * 
+// server.get(/.*/, restify.serveStatic({
+//     'directory': './public',
+//     'default': 'index.html'
+// }));
