@@ -20,7 +20,7 @@ restify.CORS.ALLOW_HEADERS.push('withcredentials');
 restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 server.use(restify.CORS());
 
-server.post('/appError', function(req,res,next){
+server.post('/apperror', function(req,res,next){
 	console.log(req.body);
 	res.send('hello')
 });
