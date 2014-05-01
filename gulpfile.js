@@ -62,7 +62,7 @@ gulp.task('watch',function(){
 });
 
 gulp.task('connect', plugins.connect.server({
-    root: ['build'],
+    root: ['build', 'bower_components'],
     port: 9000,
     livereload: true
 }));
