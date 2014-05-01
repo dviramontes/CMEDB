@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('clienterrordashboard-main',['ngRoute'])
+angular.module('clienterrordashboard',['ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
