@@ -1,3 +1,5 @@
+/*global angular, module*/
+
 'use strict';
 
 angular.module('clienterrordashboard-main', ['ngRoute'])
