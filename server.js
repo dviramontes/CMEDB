@@ -32,10 +32,10 @@ server.use(restify.CORS());
 server.post('/apperror', function(req,res,next){
 	console.log(req.body);
 	res.send('Error submitted')
-	errors.save(null, req.body, function(){
+	errors.save(null, req.body, function(err, key){ // null => autokey
 		if(err) throw err;
-		console.log('Error record saved')
-	}) // null => autokey
+		console.log('Error record saved', key)
+	}) 
 
 });
 
