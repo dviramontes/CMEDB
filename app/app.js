@@ -2,7 +2,7 @@
 
 'use strict';
 
-angular.module('clienterrordashboard', [ 'ngRoute','clienterrordashboard-main','templates' ])
+angular.module('clienterrordashboard', [ 'ngRoute','clienterrordashboard-main'])
   .config(function ($routeProvider) {
     $routeProvider
       .otherwise({

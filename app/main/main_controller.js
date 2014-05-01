@@ -1,12 +1,15 @@
 'use strict';
 
-angular.module('clienterrordashboard', ['ngRoute'])
+angular.module('clienterrordashboard-main', ['ngRoute'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'index.html',
                 controller: 'MainCtrl'
             });
+    })
+    .factory('socket', function(socketFactory) {
+        return socketFactory();
     })
     .service('API', function($http) {
         return {
@@ -24,14 +27,8 @@ angular.module('clienterrordashboard', ['ngRoute'])
     .controller('MainCtrl', function($scope, $http, API) {
 
         API.getErrors(5).then(function(data) {
-            console.log(data)
+            console.log(data);
             $scope.data = data;
         });
-
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
 
     });
