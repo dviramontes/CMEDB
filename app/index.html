@@ -77,30 +77,30 @@
             <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
                 <h1 class="page-header">Client Error Dashboard</h1>
 
-                <div class="row placeholders">
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-                        <h4>Traffic</h4>
-                        <span class="text-muted">0%</span>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-                        <h4>Traffic</h4>
-                        <span class="text-muted">0%</span>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <img data-src="holder.js/200x200/auto/lava" class="img-responsive" alt="Generic placeholder thumbnail">
-                        <h4>Traffic</h4>
-                        <span class="text-muted">0%</span>
-                    </div>
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <img data-src="holder.js/200x200/auto/industrial" class="img-responsive" alt="Generic placeholder thumbnail">
-                        <h4>Traffic</h4>
-                        <span class="text-muted">0%</span>
-                    </div>
-                </div>
+                <!--<div class="row placeholders">-->
+                    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+                        <!--<img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">-->
+                        <!--<h4>Traffic</h4>-->
+                        <!--<span class="text-muted">0%</span>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+                        <!--<img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">-->
+                        <!--<h4>Traffic</h4>-->
+                        <!--<span class="text-muted">0%</span>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+                        <!--<img data-src="holder.js/200x200/auto/lava" class="img-responsive" alt="Generic placeholder thumbnail">-->
+                        <!--<h4>Traffic</h4>-->
+                        <!--<span class="text-muted">0%</span>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+                        <!--<img data-src="holder.js/200x200/auto/industrial" class="img-responsive" alt="Generic placeholder thumbnail">-->
+                        <!--<h4>Traffic</h4>-->
+                        <!--<span class="text-muted">0%</span>-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <h2 class="sub-header">Recent</h2>
+                <h2 class="sub-header">LOG SIZE : {{ logsize || "0kb"}}</h2>
                 <div class="table-responsive" >
                     <table class="table table-striped" >
                         <thead>
@@ -110,6 +110,7 @@
                                 <th>MSG</th>
                                 <th>LOC</th>
                                 <th>user-agent</th>
+                                <th>IP</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -119,6 +120,7 @@
                                 <td class="" style="color:red">{{d.data.message}}</td>
                                 <td>{{d.data.location}}</td>
                                 <td>{{d.userAgent}}</td>
+                                <td>{{d.ip}}</td>
                             </tr>
                         </tbody>
                     </table>

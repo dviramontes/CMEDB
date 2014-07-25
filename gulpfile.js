@@ -26,8 +26,8 @@ gulp.task('css', function(){
 
 gulp.task('vendorJS', function(){
     //concatenate vendor JS files
-    gulp.src(['!./bower_components/**/*.min.js',
-        './bower_components/**/*.js'])
+    gulp.src(['./bower_components/**/*.min.js'])
+        //'./bower_components/**/*.js'])
         .pipe(plugins.concat('lib.js'))
         .pipe(gulp.dest('./build'));
 });
@@ -63,7 +63,7 @@ gulp.task('watch',function(){
 
 gulp.task('connect', plugins.connect.server({
     root: ['build', 'bower_components'],
-    port: 9000,
+    port: 3001,
     livereload: true
 }));
 

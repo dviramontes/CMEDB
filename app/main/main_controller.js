@@ -23,7 +23,16 @@ angular.module('clienterrordashboard-main', ['ngRoute'])
                         return response.data;
                     }
                 });
-            }
+            },
+	        logSize: function () {
+		        return $http.get("http://0.0.0.0:3000/logsize").then(function(response) {
+			        if (response.data.error) {
+				        return null;
+			        } else {
+				        return response.data;
+			        }
+		        });
+	        }
         }
     })
     .controller('MainCtrl', function($scope, $http, API) {
@@ -32,5 +41,9 @@ angular.module('clienterrordashboard-main', ['ngRoute'])
             console.log(data);
             $scope.data = data;
         });
+		API.logSize().then(function(data) {
+			console.log(data);
+			$scope.logsize = data;
+		});
 
     });
